@@ -1,15 +1,29 @@
 class ProductDataModel {
-  final String id;
-  final String name;
-  final String description;
-  final double price;
-  final String imageUrl;
+  String? id;
+  String? name;
+  String? description;
+  int? quantity;
+  double? price;
+  String? imageUrl;
 
   ProductDataModel({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.imageUrl,
+     this.id,
+     this.name,
+     this.description,
+     this.quantity,
+     this.price,
+     this.imageUrl,
   });
+
+  void incrementQuantity() {
+    quantity = (quantity ?? 0) + 1 ;
+  }
+
+  void setQuantity(int newQuantity) {
+    quantity = newQuantity;
+  }
+
+  int? getQuantity() {
+    return quantity;
+  }
 }

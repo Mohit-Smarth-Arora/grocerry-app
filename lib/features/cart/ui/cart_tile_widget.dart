@@ -26,11 +26,7 @@ class _CartTileWidgetState extends State<CartTileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    void decrementItemCount(){
-      tempInt = int.parse(widget.productDataModel.id);
-      tempInt--;
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$cartItemCount");
-    }
+
     return NeuBox(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -50,13 +46,13 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        widget.productDataModel.imageUrl,
+                        widget.productDataModel.imageUrl ?? "",
                       ))),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                widget.productDataModel.name,
+                widget.productDataModel.name ?? "",
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
@@ -70,7 +66,7 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        widget.productDataModel.description,
+                        widget.productDataModel.description ?? "",
                         style: TextStyle(fontSize: 14),
                       ),
                     ),
@@ -94,14 +90,12 @@ class _CartTileWidgetState extends State<CartTileWidget> {
                   padding: const EdgeInsets.only(right: 10),
                   child: Row(
                     children: [
-                      Text("Item Count: __$cartItemCount",style: TextStyle(fontSize: 18),),
-                      Text("$tempInt"),
+                      Text("Item Count: ${widget.productDataModel.quantity}",style: TextStyle(fontSize: 18),),
                       const SizedBox(
                         width: 30,
                       ),
                       IconButton(
                         onPressed: () {
-                          decrementItemCount();
                           widget.cartBloc.add(CartRemoveFromCartEvent(cartProductDataModel: widget.productDataModel));
                         },
                         icon: const Icon(

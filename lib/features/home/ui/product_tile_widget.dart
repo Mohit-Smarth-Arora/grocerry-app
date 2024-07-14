@@ -23,10 +23,7 @@ class ProductTileWidget extends StatefulWidget {
 class _ProductTileWidgetState extends State<ProductTileWidget> {
   @override
   Widget build(BuildContext context) {
-    void incrementItemCount(){
-        cartItemCount = cartItemCount + 1;
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm$cartItemCount");
-    }
+
     return NeuBox(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -46,13 +43,13 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                   image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        widget.productDataModel.imageUrl,
+                        widget.productDataModel.imageUrl ?? "",
                       ))),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Text(
-                widget.productDataModel.name,
+                widget.productDataModel.name ?? "",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
@@ -66,7 +63,7 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
-                        widget.productDataModel.description,
+                        widget.productDataModel.description ?? "",
                         style: TextStyle(fontSize: 14),
                       ),
                     ),
@@ -106,7 +103,6 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                       IconButton(
                         onPressed: () {
                           widget.homeBloc.add(HomeProductCartButtonClickedEvent(clickedProduct: widget.productDataModel));
-                          incrementItemCount();
                         },
                         icon: const Icon(
                           Icons.shopping_cart,

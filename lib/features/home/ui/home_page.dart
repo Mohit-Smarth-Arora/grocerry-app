@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // int cartItemCount = 0;
   @override
   void initState() {
     homeBloc.add(HomeInitialEvent());

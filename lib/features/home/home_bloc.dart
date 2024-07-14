@@ -35,6 +35,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
                 name: e["name"],
                 description: e['description'],
                 price: e['price'],
+                quantity: 1,
                 imageUrl: e['imageUrl']))
             .toList()));
   }
@@ -50,7 +51,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> homeProductCartButtonClickedEvent(
       HomeProductCartButtonClickedEvent event, Emitter<HomeState> emit) {
-    cartItems.add(event.clickedProduct);
+    addProductToCart(event.clickedProduct);
     print("Cart Clicked");
     emit(HomeProductItemCartedActionState());
   }
